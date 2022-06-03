@@ -1,8 +1,9 @@
 from django.db import models
 
+from django.contrib.auth.models import User
+
 # Create your models here.
 
-class User(models.Model):
-    name = models.TextField()
-    password = models.TextField()
-    points = models.IntegerField() 
+class Points(models.Model):
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
+    points = models.IntegerField()
