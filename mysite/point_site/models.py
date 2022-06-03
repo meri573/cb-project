@@ -6,4 +6,4 @@ from django.contrib.auth.models import User
 
 class Points(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
-    points = models.IntegerField()
+    points = models.IntegerField(default=150)
