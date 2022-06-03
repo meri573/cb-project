@@ -14,7 +14,19 @@
     
         <h2>send imaginary points</h2>
     
-    
+        <form action="send/" method="GET" enctype="multipart/form-data">
+            To:
+            <select name="to">
+            {% for user in users %}
+                <option valuse="{{user.username}}">{{user.username}}</option>
+        {% endfor %}
+            </select><br/>
+
+            <label for="amount">amount of imaginary points you want to send</label><br/>
+            <input type="number" id="amount" name="amount">
+
+            <input type="submit" value="Send"/>
+        </form>
     
     
 

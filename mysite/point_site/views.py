@@ -15,4 +15,7 @@ def homePageView(request):
         p.save()
         pojot = Points.objects.get(owner=request.user)
 
-    return render(request, 'point_site/index.html',{'points': pojot})
+    users = User.objects.exclude(pk=request.user.id)
+
+    return render(request, 'point_site/index.html',{'points': pojot, 'users': users})
+
