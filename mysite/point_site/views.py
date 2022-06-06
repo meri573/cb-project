@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from.models import Points
@@ -19,3 +19,20 @@ def homePageView(request):
 
     return render(request, 'point_site/index.html',{'points': pojot, 'users': users})
 
+@login_required
+def sendView(request):
+
+    receiver = User.objects.get(username=request.POST.get('to'))
+    receiver = Points.objects.get(owner=receiver)
+    sender = Points.objects.get(owner=request.user)
+    amount = int(request.POST.get('amount'))
+
+    sender.points = sender.points - amount
+    receiver.points = receiver.points + amount
+    sender.save()
+    receiver.save()
+    return redirect('/')
+
+@login_required
+def generateView(request):
+    users = User.objects.all()

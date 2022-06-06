@@ -6,19 +6,29 @@
 
     <body>
         <h1>imaginary point site</h1>
+
+        <h3>Username: {{user.username}}</h3>
     
     
         <h2>your imaginary points</h2>
         {{ points.points }}
         
     
+        {% if user.is_staff %}
+            <form action='generate/' method="POST">
+            <input type="submit" value="point generator"/>
+        {% endif %}
+
         <h2>send imaginary points</h2>
-    
-        <form action="send/" method="GET" enctype="multipart/form-data">
+            
+
+
+        <form action="send/" method="POST" enctype="multipart/form-data">
+            {% csrf_token %}
             To:
             <select name="to">
             {% for user in users %}
-                <option valuse="{{user.username}}">{{user.username}}</option>
+                <option value="{{user.username}}">{{user.username}}</option>
         {% endfor %}
             </select><br/>
 
