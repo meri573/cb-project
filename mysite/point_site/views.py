@@ -35,4 +35,8 @@ def sendView(request):
 
 @login_required
 def generateView(request):
-    users = User.objects.all()
+    amount = 150
+    receiver = Points.objects.get(owner=request.user)
+    receiver.points = receiver.points + amount
+    receiver.save()
+    return redirect('/')
