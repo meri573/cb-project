@@ -40,3 +40,8 @@ def generateView(request):
     receiver.points = receiver.points + amount
     receiver.save()
     return redirect('/')
+
+@login_required
+def inspectView(request):
+    query = Points.objects.raw('SELECT points FROM point_site_points WHERE owner = %s', (request.owner))
+    return render(request, 'point_site/inspect.html',{'query': query})
