@@ -3,10 +3,11 @@
     <body>
         
         {% for q in query %}
-        {{ q }}
+        {{ q }}<br>
         {% endfor %}
     
         <form action='/' method="POST">
+            {% csrf_token %}
         <input type="submit" value="back"/>
     
     </body>

@@ -3,6 +3,7 @@ from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
 from.models import Points
 from django.contrib.auth.models import User
+from django.db import connection
 
 # Create your views here.
 
@@ -43,5 +44,13 @@ def generateView(request):
 
 @login_required
 def inspectView(request):
-    query = Points.objects.raw('SELECT points FROM point_site_points WHERE owner = %s', (request.owner))
+    query = sql()
+
     return render(request, 'point_site/inspect.html',{'query': query})
+
+def sql():
+    with connection.cursor() as cursor:
+        #cursor.execute("SELECT * FROM point_site_points") #WHERE id = 1 UNION SELECT password FROM auth_user")
+        cursor.execute("SELECT username FROM auth_user WHERE id = 1")
+        query = cursor.fetchall()
+    return query
