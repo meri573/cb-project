@@ -44,13 +44,15 @@ def generateView(request):
 
 @login_required
 def inspectView(request):
-    query = sql()
+    # "1\' UNION SELECT password FROM auth_user WHERE username like 'admin"
+    query = "SELECT points FROM point_site_points WHERE id = '%s'" % request.POST.get('id')
+    print(query)
+    results = sql(query)
 
-    return render(request, 'point_site/inspect.html',{'query': query})
+    return render(request, 'point_site/inspect.html',{'results': results})
 
-def sql():
+def sql(query):
     with connection.cursor() as cursor:
-        #cursor.execute("SELECT * FROM point_site_points") #WHERE id = 1 UNION SELECT password FROM auth_user")
-        cursor.execute("SELECT username FROM auth_user WHERE id = 1")
-        query = cursor.fetchall()
-    return query
+        cursor.execute(query)
+        result = cursor.fetchall()
+    return result

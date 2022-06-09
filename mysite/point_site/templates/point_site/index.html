@@ -37,6 +37,13 @@
 
             <input type="submit" value="Send"/>
         </form>
+
+        <h2>see how many points other users have using user id</h2>
+            <form action="inspect/" method="POST">
+                {% csrf_token %}
+                user id: <input type="text" name="id">
+                <input type="submit" >
+            </form>
     
     
 
