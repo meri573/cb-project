@@ -23,13 +23,12 @@
             
 
 
-        <form action="send/" method="POST" enctype="multipart/form-data">
-            {% csrf_token %}
+        <form action="send/" method="GET" enctype="multipart/form-data">
             To:
             <select name="to">
             {% for user in users %}
                 <option value="{{user.username}}">{{user.username}}</option>
-        {% endfor %}
+            {% endfor %}
             </select><br/>
 
             <label for="amount">amount of imaginary points you want to send</label><br/>

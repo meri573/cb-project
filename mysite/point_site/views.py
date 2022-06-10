@@ -23,10 +23,10 @@ def homePageView(request):
 @login_required
 def sendView(request):
 
-    receiver = User.objects.get(username=request.POST.get('to'))
+    receiver = User.objects.get(username=request.GET.get('to'))
     receiver = Points.objects.get(owner=receiver)
     sender = Points.objects.get(owner=request.user)
-    amount = int(request.POST.get('amount'))
+    amount = int(request.GET.get('amount'))
 
     sender.points = sender.points - amount
     receiver.points = receiver.points + amount
