@@ -36,6 +36,9 @@ def sendView(request):
 
 @login_required
 def generateView(request):
+    # if not request.user.is_staff:
+        # return redirect('/')
+
     amount = 150
     receiver = Points.objects.get(owner=request.user)
     receiver.points = receiver.points + amount

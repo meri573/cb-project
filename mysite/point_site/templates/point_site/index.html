@@ -16,6 +16,7 @@
     
         {% if user.is_staff %}
             <form action='generate/' method="POST">
+            {% csrf_token %}
             <input type="submit" value="point generator"/>
         {% endif %}
 
