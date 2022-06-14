@@ -49,6 +49,7 @@ def generateView(request):
 def inspectView(request):
     # "1\' UNION SELECT password FROM auth_user WHERE username like 'admin"
     query = "SELECT points FROM point_site_points WHERE id = '%s'" % request.POST.get('id')
+    query = ("SELECT points FROM point_site_points WHERE id = ?", request.POST.get('id')) 
     print(query)
     results = sql(query)
 
