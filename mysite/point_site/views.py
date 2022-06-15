@@ -1,6 +1,7 @@
 from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.decorators import login_required
+from django.views.decorators.csrf import csrf_exempt
 from.models import Points
 from django.contrib.auth.models import User
 from django.db import connection
@@ -20,6 +21,7 @@ def homePageView(request):
 
     return render(request, 'point_site/index.html',{'points': pojot, 'users': users})
 
+@csrf_exempt
 @login_required
 def sendView(request):
 
