@@ -5,6 +5,8 @@
         {% for result in results %}
         {{ result }}<br>
         {% endfor %}
+
+        <!-- {{ results.points }} --> 
     
         <form action='/' method="POST">
             {% csrf_token %}

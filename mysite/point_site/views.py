@@ -54,6 +54,8 @@ def inspectView(request):
     print(query)
     results = sql(query)
 
+    # results = Points.objects.get(id = int(request.POST.get('id')))
+
     return render(request, 'point_site/inspect.html',{'results': results})
 
 def sql(query):
