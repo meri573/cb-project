@@ -25,6 +25,7 @@
 
 
         <form action="send/" method="GET" enctype="multipart/form-data">
+            <!---- {% csrf_token %} ---->
             To:
             <select name="to">
             {% for user in users %}
