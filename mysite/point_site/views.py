@@ -29,7 +29,7 @@ def homePageView(request):
 def sendView(request):
 
     receiver = User.objects.get(username=request.GET.get('to'))
-    receiver = Points.objects.get(owner=receiver)
+    receiver = Points.objects.get(owner=receiver.id)
     sender = Points.objects.get(owner=request.user)
     amount = int(request.GET.get('amount'))
 
